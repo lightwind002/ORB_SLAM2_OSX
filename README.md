@@ -9,7 +9,8 @@ Most of the port work comes from [his github](https://github.com/meiroo/ORBSLAM2
 # Usage
 1. Download from github
 2. Open Xcode/ORB_SLAM2.xcworkspace with Xcode
-3. Enjoy it!
+3. Copy all files in Data folder to /User/Data/
+4. Build & Run!
 
 # Changes
 * Pangolin removed, MapDrawer FrameDrawer removed.
