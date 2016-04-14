@@ -1,40 +1,19 @@
-## forked from https://github.com/raulmur/ORB_SLAM2
+# ORB-SLAM2 (for OSX)
+**Authors:** [Raul Mur-Artal](http://webdiis.unizar.es/~raulmur/), [Juan D. Tardos](http://webdiis.unizar.es/~jdtardos/), [J. M. M. Montiel](http://webdiis.unizar.es/~josemari/) and [Dorian Galvez-Lopez](http://doriangalvez.com/) ([DBoW2](https://github.com/dorian3d/DBoW2))
 
-安装opencv以及eigen依赖后，直接打开xcodeproject运行即可。
-（其余依赖包含在代码中，不需要dataset, 但是需要修改include以及link path）
+* Forked from https://github.com/raulmur/ORB_SLAM2 and https://github.com/meiroo/ORBSLAM2-OSX
 
-运行视频： http://7xnvhc.com1.z0.glb.clouddn.com/orbslammac1.m4v
+* This is ORG-SLAM2 for Xcode & Max OSX. No drawing modules like Pangolin is needed.
+Most of the port work comes from [his github](https://github.com/meiroo/ORBSLAM2-OSX) and [blog] (http://zhuanlan.zhihu.com/computercoil/20589372).
 
-对应ORBSLAM2技术文章和代码分析：http://zhuanlan.zhihu.com/computercoil/20589372
+# Usage
+1. Download from github
+2. Open Xcode/ORB_SLAM2.xcworkspace with Xcode
+3. Enjoy it!
 
-
-####  依赖: 
-
-基于OSX 10.11 opencv 3.1.0 Eigen3,也可以使用其他版本
-
-可以使用 "brew install opencv3"  "brew install eigen" 安装opencv3 和 eigen，
-其他依赖（g2o dbow2）已经包含在代码中
-
-
-####修改
-* 去掉了Pangolin.
-* 去掉了cmake, 直接打开 ORB_SLAM2.xcodeproj 编译运行即可.
-* 去掉了MapDrawer FrameDrawer.
-* 使用二进制词典优化加载速度(来自 https://github.com/poine/ORB_SLAM2)
-* 去掉了dataset，使用摄像头即时处理图像
-* 代码中仅留有单目方法
-
-#### dependency: 
-
-OSX 10.11 opencv 3.1.0 Eigen3
-
-Can be installed with "brew install opencv3"  "brew install eigen"
-
-
-####changes
-* Pangolin removed.
-* cmake system removed, open ORB_SLAM2.xcodeproj and build system with dependencies.
-* MapDrawer FrameDrawer removed.
-* binnary dictionary to speed up loading (from https://github.com/poine/ORB_SLAM2)
-* camera capture instead of datasets
-* only monocular method.
+# Changes
+* Pangolin removed, MapDrawer FrameDrawer removed.
+* Cmake system removed, open Xcode/ORB_SLAM2.xcworkspace and build system with dependencies.
+* Binnary dictionary to speed up loading (from https://github.com/poine/ORB_SLAM2)
+* Camera capture instead of datasets
+* OpenCV's camera calibration tools added 
