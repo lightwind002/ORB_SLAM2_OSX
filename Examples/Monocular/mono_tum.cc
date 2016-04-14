@@ -23,8 +23,12 @@
 #include<algorithm>
 #include<fstream>
 #include<chrono>
+#include <iomanip>
+#include <time.h>
+#include <sys/time.h>
+#include <unistd.h>
 
-#include<opencv2/core/core.hpp>
+#include <opencv2/core/core.hpp>
 
 #include<System.h>
 
@@ -82,7 +86,7 @@ int main(int argc, char **argv)
 #endif
 
         // Pass the image to the SLAM system
-        SLAM.TrackMonocular(im,tframe);
+        cv::Mat pose = SLAM.TrackMonocular(im,tframe);
 
 #ifdef COMPILEDWITHC11
         std::chrono::steady_clock::time_point t2 = std::chrono::steady_clock::now();
@@ -103,6 +107,41 @@ int main(int argc, char **argv)
 
         if(ttrack<T)
             usleep((T-ttrack)*1e6);
+        
+//        cv::Mat pose = SLAM.TrackMonocular(im,0);
+        
+        if(!pose.empty()){
+            
+            cv::Mat rVec;
+            cv::Rodrigues(pose.colRange(0, 3).rowRange(0, 3), rVec);
+            cv::Mat tVec = pose.col(3).rowRange(0, 3);
+            
+            const vector<ORB_SLAM2::MapPoint*> vpMPs = SLAM.mpTracker->mpMap->GetAllMapPoints();
+            if (vpMPs.size() > 0) {
+                std::vector<cv::Point3f> allmappoints;
+                for (size_t i = 0; i < vpMPs.size(); i++) {
+                    if (vpMPs[i]) {
+                        cv::Point3f pos = cv::Point3f(vpMPs[i]->GetWorldPos());
+                        allmappoints.push_back(pos);
+                    }
+                }
+                std::vector<cv::Point2f> projectedPoints;
+                cv::projectPoints(allmappoints, rVec, tVec, SLAM.mpTracker->mK, SLAM.mpTracker->mDistCoef, projectedPoints);
+                for (size_t j = 0; j < projectedPoints.size(); ++j) {
+                    cv::Point2f r1 = projectedPoints[j];
+                    cv::circle(im, cv::Point(r1.x, r1.y), 2, cv::Scalar(0, 255, 0), 1, 8);
+                }
+            }
+        }
+        //        else{
+        //            cout<<"Lost"<<endl;
+        //        }
+        
+        imshow("ORB_SLAM2", im);
+        
+        int k = cv::waitKey(20);
+        if (k > 0)
+            break;
     }
 
     // Stop all threads

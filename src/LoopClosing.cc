@@ -31,6 +31,8 @@
 #include<mutex>
 #include<thread>
 
+#include <sys/time.h>
+#include <unistd.h>
 
 namespace ORB_SLAM2
 {
