@@ -3,7 +3,7 @@
 
 * Forked from https://github.com/raulmur/ORB_SLAM2 and https://github.com/meiroo/ORBSLAM2-OSX
 
-* This is ORG-SLAM2 for Xcode & Max OSX. No drawing modules like Pangolin is needed.
+* This is ORB-SLAM2 for Xcode & Max OSX. No drawing modules like Pangolin is needed.
 Most of the port work comes from [his github](https://github.com/meiroo/ORBSLAM2-OSX) and [blog] (http://zhuanlan.zhihu.com/computercoil/20589372).
 
 # Usage
