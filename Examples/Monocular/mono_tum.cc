@@ -109,7 +109,6 @@ int main(int argc, char **argv)
             usleep((T-ttrack)*1e6);
         
 //        cv::Mat pose = SLAM.TrackMonocular(im,0);
-        
         if(!pose.empty()){
             
             cv::Mat rVec;

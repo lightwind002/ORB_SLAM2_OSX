@@ -157,11 +157,12 @@ int main(int argc, char **argv)
 //        }
         
         if(!pose_.empty() && lost_counter < 60){
+            fprintf(stderr, "call drawMapPoints()...\n");
             drawMapPoints(im, pose_, SLAM.mpTracker);
         }
-//        else{
-//            cout<<"Lost"<<endl;
-//        }
+        else{
+            cout<<"Lost "<< lost_counter << endl;
+        }
         
         imshow("ORB_SLAM2", im);
         
